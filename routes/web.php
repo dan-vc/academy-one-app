@@ -15,6 +15,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/students', function () {
+        return view('students');
+    })->name('students');
+    Route::get('/teachers', function () {
+        return view('teachers');
+    })->name('teachers');
+    Route::get('/courses', function () {
+        return view('courses');
+    })->name('courses');
+    Route::get('/enrollments', function () {
+        return view('enrollments');
+    })->name('enrollments');
+    Route::get('/reports', function () {
+        return view('reports');
+    })->name('reports');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
