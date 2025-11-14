@@ -64,8 +64,8 @@
                     <p class="text-slate-600 font-medium text-lg">Matrículas por Curso</p>
                 </div>
             </x-slot>
-            <div class="h-[300px]">
-                <canvas id="enrollmentsChart"></canvas>
+            <div class="p-5">
+                <x-chartjs-component :chart="$chart" />
             </div>
         </x-card>
 

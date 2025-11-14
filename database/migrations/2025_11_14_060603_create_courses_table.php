@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreign('teacher_id')
-                ->constrained('teachers')
+            $table->foreignId('teacher_id')
                 ->nullable()
+                ->constrained('teachers')
                 ->nullOnDelete();
             $table->string('course_code')->unique();
             $table->string('name');

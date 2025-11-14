@@ -14,7 +14,7 @@
                 <x-icon-dashboard />
                 Dashboard
             </x-nav-link>
-            <x-nav-link :href="route('students')" :active="request()->routeIs('students')">
+            <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                 <x-icon-students />
                 Alumnos
             </x-nav-link>
