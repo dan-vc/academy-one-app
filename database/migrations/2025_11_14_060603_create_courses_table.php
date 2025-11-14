@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->foreign('teacher_id')
+                ->constrained('teachers')
+                ->nullable()
+                ->nullOnDelete();
+            $table->string('course_code')->unique();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->smallInteger('credits');
+            $table->integer('max_capacity');
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
     }
