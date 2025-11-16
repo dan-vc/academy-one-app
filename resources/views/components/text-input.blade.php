@@ -9,7 +9,7 @@
     </div>
 
     <input @disabled($disabled)
-        {{ $attributes->merge(['class' => 'h-12 pl-11 border-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-primary rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600']) }} />
+        {{ $attributes->merge(['class' => 'h-12 pl-11 border-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-primary rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-primary']) }} />
 
     @isset($isSearch)
         <button type="button" x-on:click="$root.submit()"

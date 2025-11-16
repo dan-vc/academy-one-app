@@ -2,8 +2,8 @@
     <!-- Header -->
     <div class="flex justify-between items-start">
         <div>
-            <h1 class="text-3xl text-slate-800 font-semibold mb-2">Gestión de Alumnos</h1>
-            <p class="text-slate-500">Administra la información de los estudiantes</p>
+            <h1 class="text-3xl text-gray-800 font-semibold mb-2 dark:text-gray-100">Gestión de Alumnos</h1>
+            <p class="text-gray-500 dark:text-gray-400">Administra la información de los estudiantes</p>
         </div>
 
         <x-primary-button x-data x-on:click="$dispatch('open-modal', 'create-new-student')">
@@ -16,13 +16,13 @@
         <x-slot name="header">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
-                    <div class="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                    <div class="p-3 bg-blue-100 text-blue-600 rounded-xl dark:bg-blue-600/10">
                         <x-icon-students />
                     </div>
-                    <h3 class="text-xl font-medium text-slate-800">Lista de Alumnos</h3>
+                    <h3 class="text-xl font-medium text-gray-800 dark:text-gray-100">Lista de Alumnos</h3>
                 </div>
-                <div class="px-4 py-2 bg-blue-100 rounded-lg">
-                    <p class="text-blue-600 font-medium">
+                <div class="px-4 py-2 bg-blue-100 rounded-lg dark:bg-blue-600/10">
+                    <p class="text-blue-600 font-medium dark:text-blue-500">
                         Total: <span id="studentCount">{{ $students->total() }}</span> estudiantes
                     </p>
                 </div>
@@ -39,22 +39,31 @@
         <div class="overflow-x-auto">
             <table class="w-full min-w-max">
                 <thead>
-                    <tr class="bg-slate-100 border-b border-slate-200">
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Nombre</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Código</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Email</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Teléfono</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Semestre</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Fecha de Matriculación</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-slate-700">Estado</th>
-                        <th class="text-right px-6 py-4 text-sm font-medium text-slate-700">Acciones</th>
+                    <tr class="bg-gray-100 border-b border-gray-200 dark:bg-gray-900/70 dark:border-gray-700">
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Nombre
+                        </th>
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Código
+                        </th>
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Email
+                        </th>
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Teléfono
+                        </th>
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Semestre
+                        </th>
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Fecha de
+                            Matriculación</th>
+                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Estado
+                        </th>
+                        <th class="text-right px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Acciones
+                        </th>
                     </tr>
                 </thead>
-                <tbody id="studentTableBody" class="text-slate-500">
+                <tbody id="studentTableBody" class="text-gray-500 dark:text-gray-400">
                     <!-- Rows will be inserted here -->
                     @foreach ($students as $student)
-                        <tr class="border-b border-slate-200 hover:bg-slate-50/50 transition-colors">
-                            <td class="px-6 py-4 font-medium text-slate-800">
+                        <tr
+                            class="border-b border-gray-200 hover:bg-gray-50/50 transition-colors dark:border-gray-700 dark:hover:bg-gray-900/50">
+                            <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200">
                                 {{ $student->name }}
                             </td>
                             <td class="px-6 py-4">
@@ -74,20 +83,22 @@
                             </td>
                             <td class="px-6 py-4">
                                 @if ($student->deleted_at)
-                                    <span class="px-3 py-2 bg-red-100 rounded-lg text-red-600">
+                                    <span
+                                        class="px-3 py-2 bg-red-100 rounded-lg text-red-600 dark:bg-red-600/10 dark:text-red-500">
                                         inactivo
                                     </span>
                                 @else
-                                    <span class="px-3 py-2 bg-green-100 rounded-lg text-green-600">
+                                    <span
+                                        class="px-3 py-2 bg-green-100 rounded-lg text-green-600 dark:bg-green-600/10 dark:text-green-500">
                                         activo
                                     </span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 text-right text-slate-800">
+                            <td class="px-6 py-4 text-right text-gray-800 dark:text-gray-100">
                                 <div class="flex justify-end gap-2">
                                     <button x-data
                                         x-on:click="$dispatch('open-modal', 'edit-student'); selected = @js($student);"
-                                        class="inline-flex items-center p-2 border border-slate-300 rounded-lg hover:bg-blue-100 hover:text-blue-600 hover:border-blue-400 transition-colors">
+                                        class="inline-flex items-center p-2 border border-gray-300 rounded-lg hover:bg-blue-100 hover:text-blue-600 hover:border-blue-400 transition-colors dark:hover:bg-blue-600/10 dark:hover:text-blue-500">
                                         <x-icon-edit />
                                     </button>
 
@@ -98,7 +109,7 @@
                                             @method('PUT')
 
                                             <button onclick="return confirm('¿Seguro que deseas reactivar al alumno?')"
-                                                class="inline-flex items-center p-2 border border-slate-300 rounded-lg hover:bg-green-100 hover:text-green-600 hover:border-green-400 transition-colors">
+                                                class="inline-flex items-center p-2 border border-gray-300 rounded-lg hover:bg-green-100 hover:text-green-600 hover:border-green-400 transition-colors dark:hover:bg-green-600/10 dark:hover:text-green-500">
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -118,7 +129,7 @@
                                             @method('DELETE')
 
                                             <button onclick="return confirm('¿Seguro que deseas desactivar al alumno?')"
-                                                class="inline-flex items-center p-2 border border-slate-300 rounded-lg hover:bg-red-100 hover:text-red-600 hover:border-red-400 transition-colors">
+                                                class="inline-flex items-center p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:text-red-600 hover:border-red-400 transition-colors dark:hover:bg-red-600/10 dark:hover:text-red-500">
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -154,7 +165,7 @@
 
         <x-modal name="edit-student">
             <div class="p-5">
-                <h2 class="text-2xl font-medium mb-6">Editar Alumno</h2>
+                <h2 class="text-gray-900 text-2xl font-medium mb-6 dark:text-gray-100">Editar Alumno</h2>
                 <form method="POST" action="{{ route('students.update') }}">
                     @csrf
                     @method('PUT')
@@ -231,7 +242,7 @@
 
     <x-modal name="create-new-student">
         <div class="p-5">
-            <h2 class="text-2xl font-medium mb-6">Añadir Nuevo Alumno</h2>
+            <h2 class="text-gray-900 text-2xl font-medium mb-6 dark:text-gray-100">Añadir Nuevo Alumno</h2>
             <form method="POST" action="{{ route('students.store') }}">
                 @csrf
 
