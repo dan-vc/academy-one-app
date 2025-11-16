@@ -1,15 +1,15 @@
 @props([
     'disabled' => false,
-    'isSearch' => null
+    'isSearch' => null,
 ])
 
 <div class="relative">
-    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400">
         {{ $slot }}
     </div>
 
     <input @disabled($disabled)
-        {{ $attributes->merge(['class' => 'h-12 pl-11 border-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-primary rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-primary']) }} />
+        {{ $attributes->merge(['class' => 'h-12 pl-11 border-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-primary rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus:border-primary']) }} />
 
     @isset($isSearch)
         <button type="button" x-on:click="$root.submit()"

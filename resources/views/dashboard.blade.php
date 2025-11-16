@@ -15,7 +15,9 @@
                     <x-icon-students />
                 </div>
             </div>
-            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">0</p>
+            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">
+                {{ $activeStudents }}
+            </p>
         </x-card>
 
         <!-- Docentes Activos -->
@@ -26,7 +28,9 @@
                     <x-icon-teachers />
                 </div>
             </div>
-            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">0</p>
+            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">
+                {{ $activeTeachers }}
+            </p>
         </x-card>
 
         <!-- Cursos Activos -->
@@ -73,10 +77,10 @@
         <x-card>
             <x-slot name="header">
                 <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-3 rounded-xl text-blue-600 transition dark:bg-blue-600/10 dark:text-blue-500">
+                    <div class="bg-green-100 p-3 rounded-xl text-green-600 transition dark:bg-green-600/10 dark:text-green-500">
                         <x-icon-enrollments />
                     </div>
-                    <p class="text-gray-600 font-medium text-lg transition dark:text-gray-100">Matrículas por Curso</p>
+                    <p class="text-gray-600 font-medium text-lg transition dark:text-gray-100">Distribución de Alumnos</p>
                 </div>
             </x-slot>
             <div class="p-5">
@@ -88,10 +92,10 @@
         <x-card>
             <x-slot name="header">
                 <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-3 rounded-xl text-blue-600 transition dark:bg-blue-600/10 dark:text-blue-500">
+                    <div class="bg-orange-100 p-3 rounded-xl text-orange-600 transition dark:bg-orange-600/10 dark:text-orange-500">
                         <x-icon-enrollments />
                     </div>
-                    <p class="text-gray-600 font-medium text-lg transition dark:text-gray-100">Matrículas por Curso</p>
+                    <p class="text-gray-600 font-medium text-lg transition dark:text-gray-100">Promedio de Calificaciones</p>
                 </div>
             </x-slot>
             <div class="p-5">
@@ -103,10 +107,10 @@
         <x-card>
             <x-slot name="header">
                 <div class="flex items-center gap-4">
-                    <div class="bg-blue-100 p-3 rounded-xl text-blue-600 transition dark:bg-blue-600/10 dark:text-blue-500">
+                    <div class="bg-purple-100 p-3 rounded-xl text-purple-600 transition dark:bg-purple-600/10 dark:text-purple-500">
                         <x-icon-enrollments />
                     </div>
-                    <p class="text-gray-600 font-medium text-lg transition dark:text-gray-100">Matrículas por Curso</p>
+                    <p class="text-gray-600 font-medium text-lg transition dark:text-gray-100">Tendencia de Matrículas</p>
                 </div>
             </x-slot>
             <div class="p-5">

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -12,7 +15,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-    
+
         $start = Carbon::parse(User::min("created_at"));
         $end = Carbon::now();
         $period = CarbonPeriod::create($start, "1 month", $end);
@@ -60,7 +63,11 @@ class DashboardController extends Controller
                 ]
             ]);
 
-        return view("dashboard", compact("chart"));
 
+        $activeStudents = Student::count();
+        $activeTeachers = Teacher::count();
+        $activeCourses = Course::where('status', '=', 'active');
+
+        return view("dashboard", compact("chart", 'activeStudents', 'activeTeachers', 'activeCourses'));
     }
 }

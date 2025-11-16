@@ -18,7 +18,7 @@
                 <x-icon-students />
                 Alumnos
             </x-nav-link>
-            <x-nav-link :href="route('teachers')" :active="request()->routeIs('teachers')">
+            <x-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
                 <x-icon-teachers />
                 Docentes
             </x-nav-link>

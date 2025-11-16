@@ -58,7 +58,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody id="studentTableBody" class="text-gray-500 dark:text-gray-400">
+                <tbody class="text-gray-500 dark:text-gray-400">
                     <!-- Rows will be inserted here -->
                     @foreach ($students as $student)
                         <tr
@@ -193,7 +193,7 @@
                             <x-icon-students />
                         </x-text-input>
 
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
@@ -265,7 +265,7 @@
                         <x-icon-students />
                     </x-text-input>
 
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
                 <!-- Email Address -->
