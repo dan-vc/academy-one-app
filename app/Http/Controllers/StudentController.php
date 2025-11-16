@@ -75,7 +75,7 @@ class StudentController extends Controller
      */
     public function update(Request $request)
     {
-        $student = Student::find($request['id']);
+        $student = Student::withTrashed()->find($request['id']);
 
         // Usamos Rule::unique para que ignore al estudiante que estamos editando
         $validated = $request->validate([

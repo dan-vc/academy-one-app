@@ -22,7 +22,7 @@
                 <x-icon-teachers />
                 Docentes
             </x-nav-link>
-            <x-nav-link :href="route('courses')" :active="request()->routeIs('courses')">
+            <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
                 <x-icon-courses />
                 Cursos
             </x-nav-link>

@@ -17,23 +17,38 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" x-data="{
+    dark: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    toggle() {
+        this.dark = !this.dark;
+        localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+    }
+}" x-init="document.documentElement.classList.toggle('dark', dark);
+$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
+
+    @if (session('success'))
+        <x-alert type="success">
+            {{ session('success') }}
+        </x-alert>
+    @endif
+
+    @if (session('error'))
+        <x-alert type="error">
+            {{ session('error') }}
+        </x-alert>
+    @endif
+
     <div class="flex flex-col sm:flex-row min-h-screen bg-gray-100 dark:bg-gray-900 transition">
         @include('layouts.navigation')
 
         <!-- Page Content -->
-        <main class="flex-1 flex flex-col p-8 gap-6 max-w-screen-2xl">
+        <main class="flex-1 flex flex-col p-4 sm:p-8 gap-6 max-w-screen-2xl">
             {{ $slot }}
         </main>
     </div>
 
-    <div class="fixed right-4 top-4" x-data="{
-        dark: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
-        toggle() {
-            this.dark = !this.dark;
-            localStorage.setItem('theme', this.dark ? 'dark' : 'light');
-        }
-    }" x-init="document.documentElement.classList.toggle('dark', dark); $watch('dark', value => document.documentElement.classList.toggle('dark', value))">
+    {{-- Theme Toggle --}}
+    <div class="hidden sm:flex fixed right-4 top-4">
 
         <button @click="toggle()" class="text-2xl">
             <span x-show="!dark">🌙</span>

@@ -83,7 +83,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id = null)
     {
-        $teacher = Teacher::find($request['id']);
+        $teacher = Teacher::withTrashed()->find($request['id']);
 
         // Usamos Rule::unique para que ignore al estudiante que estamos editando
         $validated = $request->validate([
@@ -105,6 +105,13 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         try {
+            // Verificar si el docente tiene cursos asignados
+            if ($teacher->courses()->exists()) {
+                return redirect()
+                    ->route('teachers.index')
+                    ->with('error', 'No puedes desactivar este docente porque tiene cursos asignados.');
+            }
+
             // Con softDeletes, este método simplemente establece el campo 'deleted_at'.
             // El registro no se elimina físicamente.
             $teacher->delete();

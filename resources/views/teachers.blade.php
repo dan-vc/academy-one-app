@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Header -->
-    <div class="flex justify-between items-start">
+    <div class="flex flex-col gap-6 sm:flex-row justify-between items-start">
         <div>
             <h1 class="text-3xl text-gray-800 font-semibold mb-2 dark:text-gray-100">Gestión de Docentes</h1>
             <p class="text-gray-500 dark:text-gray-400">Administra la información de los profesores</p>
@@ -14,7 +14,7 @@
 
     <x-card x-data="{ selected: null }">
         <x-slot name="header">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-col gap-5 sm:items-center justify-between mb-4 sm:flex-row">
                 <div class="flex items-center gap-3">
                     <div class="p-3 bg-green-100 text-green-600 rounded-xl dark:bg-green-600/10">
                         <x-icon-teachers />
@@ -65,7 +65,7 @@
                     @foreach ($teachers as $teacher)
                         <tr
                             class="border-b border-gray-200 hover:bg-gray-50/50 transition-colors dark:border-gray-700 dark:hover:bg-gray-900/50">
-                            <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200"
+                            <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
                                 title="{{ $teacher->name }}">
                                 {{ $teacher->name }}
                             </td>
@@ -112,19 +112,9 @@
                                             @csrf
                                             @method('PUT')
 
-                                            <button title="Activar Docente" onclick="return confirm('¿Seguro que deseas reactivar al alumno?')"
+                                            <button title="Activar Docente" onclick="return confirm('¿Seguro que deseas reactivar al docente?')"
                                                 class="inline-flex items-center p-2 border border-gray-300 rounded-lg hover:bg-green-100 hover:text-green-600 hover:border-green-400 transition-colors dark:hover:bg-green-600/10 dark:hover:text-green-500">
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42004 13.98 8.42004 12C8.42004 10.02 10.02 8.42004 12 8.42004C13.98 8.42004 15.58 10.02 15.58 12Z"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39997C18.82 5.79997 15.53 3.71997 12 3.71997C8.46997 3.71997 5.17997 5.79997 2.88997 9.39997C1.98997 10.81 1.98997 13.18 2.88997 14.59C5.17997 18.19 8.46997 20.27 12 20.27Z"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
+                                                <x-icon-activate />
                                             </button>
                                         </form>
                                     @else
@@ -135,29 +125,7 @@
                                             <button title="Desactivar Docente"
                                                 onclick="return confirm('¿Seguro que deseas desactivar al docente?')"
                                                 class="inline-flex items-center p-2 border border-gray-300 rounded-lg hover:bg-red-100 hover:text-red-600 hover:border-red-400 transition-colors dark:hover:bg-red-600/10 dark:hover:text-red-500">
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M14.53 9.47004L9.47004 14.53C8.82004 13.88 8.42004 12.99 8.42004 12C8.42004 10.02 10.02 8.42004 12 8.42004C12.99 8.42004 13.88 8.82004 14.53 9.47004Z"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M17.82 5.76998C16.07 4.44998 14.07 3.72998 12 3.72998C8.46997 3.72998 5.17997 5.80998 2.88997 9.40998C1.98997 10.82 1.98997 13.19 2.88997 14.6C3.67997 15.84 4.59997 16.91 5.59997 17.77"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M8.42004 19.5301C9.56004 20.0101 10.77 20.2701 12 20.2701C15.53 20.2701 18.82 18.1901 21.11 14.5901C22.01 13.1801 22.01 10.8101 21.11 9.40005C20.78 8.88005 20.42 8.39005 20.05 7.93005"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M15.5099 12.7C15.2499 14.11 14.0999 15.26 12.6899 15.52"
-                                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M9.47 14.53L2 22" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M22 2L14.53 9.47" stroke="currentColor"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
+                                                <x-icon-deactivate />
                                             </button>
                                         </form>
                                     @endif

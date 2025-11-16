@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
@@ -28,11 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/teachers', [TeacherController::class, 'update'])->name('teachers.update');
     Route::delete('/teachers/{teacher}/delete', [TeacherController::class, 'destroy'])->name('teachers.destroy');
     Route::put('/teachers/{teacher}/restore', [TeacherController::class, 'restore'])->name('teachers.restore');
+    
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+    Route::put('/courses', [CourseController::class, 'update'])->name('courses.update');
+    Route::put('/courses/{course}/deactivate', [CourseController::class, 'deactivate'])->name('courses.deactivate');
+    Route::put('/courses/{course}/restore', [CourseController::class, 'restore'])->name('courses.restore');
+    Route::delete('/courses/{course}/delete', [CourseController::class, 'destroy'])->name('courses.destroy');
 
-
-    Route::get('/courses', function () {
-        return view('courses');
-    })->name('courses');
     Route::get('/enrollments', function () {
         return view('enrollments');
     })->name('enrollments');

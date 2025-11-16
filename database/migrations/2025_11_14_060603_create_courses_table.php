@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->smallInteger('credits');
             $table->integer('max_capacity');
-            $table->enum('status', ['active', 'inactive']);
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
