@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -37,12 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/courses/{course}/restore', [CourseController::class, 'restore'])->name('courses.restore');
     Route::delete('/courses/{course}/delete', [CourseController::class, 'destroy'])->name('courses.destroy');
 
-    Route::get('/enrollments', function () {
-        return view('enrollments');
-    })->name('enrollments');
+    Route::get('/enrollments', [EnrollmentController::class, 'index'])->name('enrollments.index');
+    Route::post('/enrollments', [EnrollmentController::class, 'store'])->name('enrollments.store');
+    Route::put('/enrollments', [EnrollmentController::class, 'update'])->name('enrollments.update');
+    Route::delete('/enrollments/{enrollment}/delete', [EnrollmentController::class, 'destroy'])->name('enrollments.destroy');
+
     Route::get('/reports', function () {
         return view('reports');
-    })->name('reports');
+    })->name('reports.index');
 });
 
 require __DIR__ . '/auth.php';

@@ -18,13 +18,13 @@
 </head>
 
 <body class="font-sans antialiased" x-data="{
-    dark: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    toggle() {
-        this.dark = !this.dark;
-        localStorage.setItem('theme', this.dark ? 'dark' : 'light');
-    }
-}" x-init="document.documentElement.classList.toggle('dark', dark);
-$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
+        dark: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+        toggle() {
+            this.dark = !this.dark;
+            localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+        }
+    }" x-init="document.documentElement.classList.toggle('dark', dark);
+    $watch('dark', value => document.documentElement.classList.toggle('dark', value))">
 
     @if (session('success'))
         <x-alert type="success">
@@ -38,7 +38,7 @@ $watch('dark', value => document.documentElement.classList.toggle('dark', value)
         </x-alert>
     @endif
 
-    <div class="flex flex-col sm:flex-row min-h-screen bg-gray-100 dark:bg-gray-900 transition">
+    <div class="layout-wrapper min-h-screen bg-gray-100 dark:bg-gray-900 transition">
         @include('layouts.navigation')
 
         <!-- Page Content -->

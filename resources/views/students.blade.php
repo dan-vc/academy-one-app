@@ -27,47 +27,40 @@
                     </p>
                 </div>
             </div>
-            <form action="#" method="GET">
-                @csrf
-                <x-text-input type="text" name="search" isSearch value="{{ request('search') }}"
-                    placeholder="Buscar por nombre, apellido o email..." class="w-full">
-                    <x-icon-search />
-                </x-text-input>
-            </form>
+            <x-search-input class="w-full" placeholder="Buscar por nombre, código o email..." />
         </x-slot>
 
         <div class="overflow-x-auto">
-            <table class="w-full max-w-full">
-                <thead>
-                    <tr class="bg-gray-100 border-b border-gray-200 dark:bg-gray-900/70 dark:border-gray-700">
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Nombre
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50 uppercase tracking-wider text-xs dark:bg-gray-900/10">
+                    <tr>
+                        <th class="text-left px-6 py-3 font-medium">Nombre
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Código
+                        <th class="text-left px-6 py-3 font-medium">Código
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Email
+                        <th class="text-left px-6 py-3 font-medium">Email
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Teléfono
+                        <th class="text-left px-6 py-3 font-medium">Teléfono
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Semestre
+                        <th class="text-left px-6 py-3 font-medium">Semestre
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Fecha de
+                        <th class="text-left px-6 py-3 font-medium">Fecha de
                             Matriculación</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Estado
+                        <th class="text-left px-6 py-3 font-medium">Estado
                         </th>
-                        <th class="text-right px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Acciones
+                        <th class="text-right px-6 py-3 font-medium">Acciones
                         </th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-500 dark:text-gray-400">
+                <tbody class="divide-y dark:divide-gray-700">
                     <!-- Rows will be inserted here -->
                     @foreach ($students as $student)
-                        <tr
-                            class="border-b border-gray-200 hover:bg-gray-50/50 transition-colors dark:border-gray-700 dark:hover:bg-gray-900/50">
+                        <tr class="hover:bg-gray-50/50 transition-colors dark:hover:bg-gray-900/50">
                             <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
                                 title="{{ $student->name }}">
                                 {{ $student->name }}
                             </td>
-                            <td class="px-6 py-4" title="{{ $student->student_code }}">
+                            <td class="px-6 py-4 text-gray-800 dark:text-gray-200" title="{{ $student->student_code }}">
                                 {{ $student->student_code }}
                             </td>
                             <td class="px-6 py-4" title="{{ $student->email }}">
@@ -133,6 +126,12 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+
+        {{-- Paginación --}}
+        <div class="mt-4">
+            {{ $students->links() }}
         </div>
 
         <x-modal name="edit-student">

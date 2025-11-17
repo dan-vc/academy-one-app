@@ -16,4 +16,9 @@ class Student extends Model
         'email',
         'phone',
     ];
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }

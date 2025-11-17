@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.layout-wrapper {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+}
+
+@media screen and (max-width: 639px) {
+    .layout-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

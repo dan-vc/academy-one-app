@@ -35,8 +35,10 @@ export default {
                     // Si quieres, puedes definir el 100% como una clave específica también
                     // '1000': '#165EFB',
                 },
-                // Si quieres, también puedes añadir tu otro color aquí como un secundario
-                // secondary: '#141E30',
+
+                secondary:{
+                    DEFAULT: '#141E30',
+                }
             },
         },
     },

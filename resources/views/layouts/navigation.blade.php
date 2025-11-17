@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="sticky top-0 sm:h-screen flex flex-col sm:w-64 bg-[#141E30] text-white trantision">
+<nav x-data="{ open: false }" class="sm:sticky top-0 sm:h-screen flex flex-col sm:w-64 bg-[#141E30] text-white trantision">
     <!-- Primary Navigation Menu -->
     <div class="flex sm:flex-col h-full justify-between w-full p-4 sm:p-0">
         <!-- Logo -->
@@ -26,17 +26,32 @@
                 <x-icon-courses />
                 Cursos
             </x-nav-link>
-            <x-nav-link :href="route('enrollments')" :active="request()->routeIs('enrollments')">
+            <x-nav-link :href="route('enrollments.index')" :active="request()->routeIs('enrollments.index')">
                 <x-icon-enrollments />
                 Matrículas
             </x-nav-link>
-            <x-nav-link :href="route('reports')" :active="request()->routeIs('reports')">
+            <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
                 <x-icon-reports />
                 Reportes
             </x-nav-link>
+            <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                <x-icon-user />
+                Perfil
+            </x-nav-link>
         </div>
 
-        <div class="hidden sm:block mt-auto p-4 border-t border-gray-700">
+        <div class="hidden sm:block px-4 mt-auto">
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-danger-button class="w-full justify-center">
+                    Cerrar Sesión
+                </x-danger-button>
+            </form>
+        </div>
+
+        <div class="hidden sm:block mt-4 px-4 py-2 border-t border-gray-700">
             <div class="px-3 py-4 flex gap-3">
                 <div class="flex items-center justify-center bg-blue-600 rounded-full aspect-square w-10 h-10">AO</div>
                 <div class="block">
@@ -67,6 +82,21 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Dashboard
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                Alumnos
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
+                Docentes
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
+                Cursos
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('enrollments.index')" :active="request()->routeIs('enrollments.index')">
+                Matrículas
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
+                Reportes
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -78,7 +108,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    Perfil
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -88,7 +118,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        Cerrar Sesión
                     </x-responsive-nav-link>
                 </form>
             </div>

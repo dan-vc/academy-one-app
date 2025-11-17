@@ -27,49 +27,42 @@
                     </p>
                 </div>
             </div>
-            <form action="#" method="GET">
-                @csrf
-                <x-text-input type="text" name="search" isSearch value="{{ request('search') }}"
-                    placeholder="Buscar por nombre, apellido o email..." class="w-full">
-                    <x-icon-search />
-                </x-text-input>
-            </form>
+            <x-search-input class="w-full" placeholder="Buscar por nombre, código o dni..." />
         </x-slot>
 
         <div class="overflow-x-auto">
-            <table class="w-full min-w-max">
-                <thead>
-                    <tr class="bg-gray-100 border-b border-gray-200 dark:bg-gray-900/70 dark:border-gray-700">
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Nombre
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50 uppercase tracking-wider text-xs dark:bg-gray-900/10">
+                    <tr>
+                        <th class="text-left px-6 py-3 font-medium">Nombre
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Código
+                        <th class="text-left px-6 py-3 font-medium">Código
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">DNI o C.E.
+                        <th class="text-left px-6 py-3 font-medium">DNI o C.E.
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Título
+                        <th class="text-left px-6 py-3 font-medium">Título
                             Profesional
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Cursos
+                        <th class="text-left px-6 py-3 font-medium">Cursos
                             Activos
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Fecha de
+                        <th class="text-left px-6 py-3 font-medium">Fecha de
                             Ingreso</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Estado
+                        <th class="text-left px-6 py-3 font-medium">Estado
                         </th>
-                        <th class="text-right px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Acciones
+                        <th class="text-right px-6 py-3 font-medium">Acciones
                         </th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-500 dark:text-gray-400">
+                <tbody class="divide-y dark:divide-gray-700">
                     <!-- Rows will be inserted here -->
                     @foreach ($teachers as $teacher)
-                        <tr
-                            class="border-b border-gray-200 hover:bg-gray-50/50 transition-colors dark:border-gray-700 dark:hover:bg-gray-900/50">
+                        <tr class=" hover:bg-gray-50/50 transition-colors dark:hover:bg-gray-900/50">
                             <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
                                 title="{{ $teacher->name }}">
                                 {{ $teacher->name }}
                             </td>
-                            <td class="px-6 py-4" title="{{ $teacher->name }}">
+                            <td class="px-6 py-4 text-gray-800 dark:text-gray-200" title="{{ $teacher->name }}">
                                 {{ $teacher->teacher_code }}
                             </td>
                             <td class="px-6 py-4" title="{{ $teacher->dni }}">
@@ -112,7 +105,8 @@
                                             @csrf
                                             @method('PUT')
 
-                                            <button title="Activar Docente" onclick="return confirm('¿Seguro que deseas reactivar al docente?')"
+                                            <button title="Activar Docente"
+                                                onclick="return confirm('¿Seguro que deseas reactivar al docente?')"
                                                 class="inline-flex items-center p-2 border border-gray-300 rounded-lg hover:bg-green-100 hover:text-green-600 hover:border-green-400 transition-colors dark:hover:bg-green-600/10 dark:hover:text-green-500">
                                                 <x-icon-activate />
                                             </button>
@@ -135,6 +129,11 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        {{-- Paginación --}}
+        <div class="mt-4">
+            {{ $teachers->links() }}
         </div>
 
         <x-modal name="edit-teacher">

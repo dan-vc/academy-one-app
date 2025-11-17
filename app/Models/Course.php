@@ -19,4 +19,9 @@ class Course extends Model
     {
         return $this->belongsTo(Teacher::class);
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }

@@ -27,50 +27,43 @@
                     </p>
                 </div>
             </div>
-            <form action="#" method="GET">
-                @csrf
-                <x-text-input type="text" name="search" isSearch value="{{ request('search') }}"
-                    placeholder="Buscar por nombre o código..." class="w-full">
-                    <x-icon-search />
-                </x-text-input>
-            </form>
+            <x-search-input class="w-full" placeholder="Buscar por nombre o código..." />
         </x-slot>
 
         <div class="overflow-x-auto">
-            <table class="w-full min-w-max">
-                <thead>
-                    <tr class="bg-gray-100 border-b border-gray-200 dark:bg-gray-900/70 dark:border-gray-700">
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Código
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50 uppercase tracking-wider text-xs dark:bg-gray-900/10">
+                    <tr>
+                        <th class="text-left px-6 py-3 font-medium">Nombre
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Nombre
+                        <th class="text-left px-6 py-3 font-medium">Código
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Docente
+                        <th class="text-left px-6 py-3 font-medium">Docente
                             Asignado
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Créditos
+                        <th class="text-left px-6 py-3 font-medium">Créditos
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Capacidad
+                        <th class="text-left px-6 py-3 font-medium">Capacidad
                             Máx.
                         </th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Fecha de
+                        <th class="text-left px-6 py-3 font-medium">Fecha de
                             Creación</th>
-                        <th class="text-left px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Estado
+                        <th class="text-left px-6 py-3 font-medium">Estado
                         </th>
-                        <th class="text-right px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-500">Acciones
+                        <th class="text-right px-6 py-3 font-medium">Acciones
                         </th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-500 dark:text-gray-400">
+                <tbody class="divide-y dark:divide-gray-700">
                     @foreach ($courses as $course)
-                        <tr
-                            class="border-b border-gray-200 hover:bg-gray-50/50 transition-colors dark:border-gray-700 dark:hover:bg-gray-900/50">
-                            <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200"
-                                title="{{ $course->course_code }}">
-                                {{ $course->course_code }}
-                            </td>
+                        <tr class="hover:bg-gray-50/50 transition-colors dark:hover:bg-gray-900/50">
                             <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
                                 title="{{ $course->name }}">
                                 {{ $course->name }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200"
+                                title="{{ $course->course_code }}">
+                                {{ $course->course_code }}
                             </td>
                             <td class="px-6 py-4overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
                                 title="{{ $course->teacher?->name ?? 'Sin asignar' }}">
@@ -150,6 +143,11 @@
             </table>
         </div>
 
+        {{-- Paginación --}}
+        <div class="mt-4">
+            {{ $courses->links() }}
+        </div>
+
         {{-- Modal para Editar Curso --}}
         <x-modal name="edit-course">
             <div class="p-5">
@@ -173,7 +171,7 @@
                         <x-input-label for="name" value="Nombre del Curso" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
                             placeholder="Matemática Básica I" x-bind:value="selected?.name" required>
-                            <x-icon-courses />
+                            <x-icon-name />
                         </x-text-input>
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
@@ -182,7 +180,7 @@
                         <x-input-label for="credits" value="Créditos" />
                         <x-text-input id="credits" class="block mt-1 w-full" type="number" name="credits"
                             placeholder="4" x-bind:value="selected?.credits" required>
-                            <x-icon-code />
+                            <x-icon-hashtag />
                         </x-text-input>
                         <x-input-error :messages="$errors->get('credits')" class="mt-2" />
                     </div>
@@ -191,7 +189,7 @@
                         <x-input-label for="max_capacity" value="Capacidad Máxima" />
                         <x-text-input id="max_capacity" class="block mt-1 w-full" type="number" name="max_capacity"
                             placeholder="50" x-bind:value="selected?.max_capacity" required>
-                            <x-icon-code />
+                            <x-icon-people />
                         </x-text-input>
                         <x-input-error :messages="$errors->get('max_capacity')" class="mt-2" />
                     </div>
@@ -255,7 +253,7 @@
                     <x-input-label for="name" value="Nombre del Curso" />
                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
                         :value="old('name')" placeholder="Matemática Básica I" required>
-                        <x-icon-courses />
+                        <x-icon-name />
                     </x-text-input>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
@@ -264,7 +262,7 @@
                     <x-input-label for="credits" value="Créditos" />
                     <x-text-input id="credits" class="block mt-1 w-full" type="number" name="credits"
                         :value="old('credits')" placeholder="4" required>
-                        <x-icon-code />
+                        <x-icon-hashtag />
                     </x-text-input>
                     <x-input-error :messages="$errors->get('credits')" class="mt-2" />
                 </div>
@@ -273,7 +271,7 @@
                     <x-input-label for="max_capacity" value="Capacidad Máxima" />
                     <x-text-input id="max_capacity" class="block mt-1 w-full" type="number" name="max_capacity"
                         :value="old('max_capacity')" placeholder="50" required>
-                        <x-icon-code />
+                        <x-icon-people />
                     </x-text-input>
                     <x-input-error :messages="$errors->get('max_capacity')" class="mt-2" />
                 </div>
