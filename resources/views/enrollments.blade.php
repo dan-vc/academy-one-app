@@ -52,7 +52,7 @@
                     @foreach ($enrollments as $enrollment)
                         <tr class="hover:bg-gray-50/50 transition-colors dark:hover:bg-gray-900/50">
                             <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
-                                title="{{ $enrollment->student->name }}">
+                                title="{{ $enrollment->student?->name }}">
                                 {{ $enrollment->student->name }} {{ $enrollment->student->lastname }}
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs"
