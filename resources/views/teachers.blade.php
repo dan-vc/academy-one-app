@@ -62,7 +62,7 @@
                                 title="{{ $teacher->name }}">
                                 {{ $teacher->name }}
                             </td>
-                            <td class="px-6 py-4 text-gray-800 dark:text-gray-200" title="{{ $teacher->name }}">
+                            <td class="px-6 py-4 font-medium text-gray-800 dark:text-gray-200" title="{{ $teacher->name }}">
                                 {{ $teacher->teacher_code }}
                             </td>
                             <td class="px-6 py-4" title="{{ $teacher->dni }}">

@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -43,9 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/enrollments', [EnrollmentController::class, 'update'])->name('enrollments.update');
     Route::delete('/enrollments/{enrollment}/delete', [EnrollmentController::class, 'destroy'])->name('enrollments.destroy');
 
-    Route::get('/reports', function () {
-        return view('reports');
-    })->name('reports.index');
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/students/export', [ReportController::class, 'exportStudentsCSV'])->name('reports.students.export');
+    Route::get('/reports/courses/export', [ReportController::class, 'exportCoursesCSV'])->name('reports.courses.export');
+    Route::get('/reports/teachers/export', [ReportController::class, 'exportTeachersCSV'])->name('reports.teachers.export');
 });
 
 require __DIR__ . '/auth.php';
