@@ -119,7 +119,7 @@ class CourseController extends Controller
                 ->with('success', 'Curso eliminado con éxito.');
         } catch (Exception $th) {
             return redirect()->route('courses.index')
-            ->with('error', $th->getMessage());
+            ->with('error', "No se pudo eliminar el curso porque tiene estudiantes asignados.");
         }
     }
 
