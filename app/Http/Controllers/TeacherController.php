@@ -58,7 +58,8 @@ class TeacherController extends Controller
             return redirect()->route('teachers.index')
                 ->with('success', 'Docente creado con éxito.');
         } catch (\Throwable $th) {
-            dd($th);
+            return redirect()->route('teachers.index')
+            ->with('success', $th->getMessage());
         }
     }
 
@@ -119,7 +120,8 @@ class TeacherController extends Controller
             return redirect()->route('teachers.index')
                 ->with('success', 'Docente desactivado con éxito.');
         } catch (\Throwable $th) {
-            dd($th);
+            return redirect()->route('teachers.index')
+            ->with('success', $th->getMessage());
         }
     }
 

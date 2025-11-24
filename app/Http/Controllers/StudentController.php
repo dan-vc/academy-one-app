@@ -56,7 +56,8 @@ class StudentController extends Controller
             return redirect()->route('students.index')
                 ->with('success', 'Alumno creado con éxito.');
         } catch (\Throwable $th) {
-            dd($th);
+            return redirect()->route('students.index')
+            ->with('success', $th->getMessage());
         }
     }
 
@@ -105,7 +106,8 @@ class StudentController extends Controller
             return redirect()->route('students.index')
                 ->with('success', 'Alumno desactivado con éxito.');
         } catch (\Throwable $th) {
-            dd($th);
+            return redirect()->route('students.index')
+            ->with('success', $th->getMessage());
         }
     }
 

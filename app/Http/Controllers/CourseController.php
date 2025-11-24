@@ -61,7 +61,8 @@ class CourseController extends Controller
             return redirect()->route('courses.index')
                 ->with('success', 'Curso creado con éxito.');
         } catch (\Throwable $th) {
-            dd($th);
+            return redirect()->route('courses.index')
+            ->with('success', $th->getMessage());
         }
     }
 
@@ -116,7 +117,8 @@ class CourseController extends Controller
             return redirect()->route('courses.index')
                 ->with('success', 'Curso eliminado con éxito.');
         } catch (\Throwable $th) {
-            dd($th);
+            return redirect()->route('courses.index')
+            ->with('success', $th->getMessage());
         }
     }
 
