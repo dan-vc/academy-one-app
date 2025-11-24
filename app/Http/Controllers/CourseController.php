@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Teacher;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -60,7 +61,7 @@ class CourseController extends Controller
 
             return redirect()->route('courses.index')
                 ->with('success', 'Curso creado con éxito.');
-        } catch (\Throwable $th) {
+        } catch (Exception $th) {
             return redirect()->route('courses.index')
             ->with('success', $th->getMessage());
         }
@@ -118,7 +119,7 @@ class CourseController extends Controller
                 ->with('success', 'Curso eliminado con éxito.');
         } catch (\Throwable $th) {
             return redirect()->route('courses.index')
-            ->with('success', $th->getMessage());
+            ->with('error', $th->getMessage());
         }
     }
 
