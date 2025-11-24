@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -37,9 +38,7 @@ class DashboardController extends Controller
             ->datasets([
                 [
                     "label" => "Estudiantes Matriculados",
-                    "backgroundColor" => [
-                        'rgba(99, 100, 255, 0.5)',
-                    ],
+                    "backgroundColor" => 'rgba(99, 100, 255, 0.5)',
                     "borderColor" => "rgba(54, 162, 235, 1)",
                     "data" => $courseCounts
                 ],
@@ -76,6 +75,7 @@ class DashboardController extends Controller
                         'rgba(40, 159, 64, 0.8)',
                         'rgba(210, 99, 132, 0.8)',
                     ],
+                    'borderColor' => 'transparent',
                     "hoverOffset" => 4 // Efecto visual al pasar el mouse
                 ]
             ]);
@@ -96,7 +96,7 @@ class DashboardController extends Controller
             $historyLabels[] = ucfirst($date->isoFormat('MMM'));
 
             // Datos: Contamos matrículas en ese mes y año específico
-            $count = \App\Models\Enrollment::whereYear('enrollment_date', $date->year)
+            $count = Enrollment::whereYear('enrollment_date', $date->year)
                 ->whereMonth('enrollment_date', $date->month)
                 ->count();
 
@@ -124,7 +124,7 @@ class DashboardController extends Controller
                     "fill" => false,  // Solo línea, sin rellenar el fondo
                     "data" => $historyData
                 ]
-            ]);
+                ]);
 
 
         // --- OPCIÓN B: CARGA DOCENTE (Barra Horizontal) ---
@@ -147,21 +147,13 @@ class DashboardController extends Controller
                     "borderWidth" => 1,
                     "data" => $topTeachers->pluck('courses_count')->toArray()
                 ]
-            ])
-            ->options([
-                'indexAxis' => 'y', // Barras horizontales
-                'plugins' => [
-                    'title' => ['display' => true, 'text' => 'Docentes con Mayor Carga Académica'],
-                    'legend' => ['display' => false]
-                ],
-                'scales' => [
-                    'x' => ['ticks' => ['stepSize' => 1]]
-                ]
-            ]);
+                ]);
 
         // --- TARJETAS DE RESUMEN ---
         $activeStudents = Student::count();
         $activeTeachers = Teacher::count();
+        $activeCourses = Course::where('status', 'active')->count();
+        $totalEnrollments = Enrollment::count();
 
         // Corrección: Faltaba el ->count() en tu código original
         $activeCourses = Course::where('status', 'active')->count();
@@ -173,7 +165,8 @@ class DashboardController extends Controller
             "teacherChart",
             'activeStudents',
             'activeTeachers',
-            'activeCourses'
+            'activeCourses',
+            'totalEnrollments'
         ));
     }
 }

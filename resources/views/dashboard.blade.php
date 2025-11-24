@@ -43,7 +43,9 @@
                     <x-icon-courses />
                 </div>
             </div>
-            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">0</p>
+            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">
+                {{ $activeCourses }}
+            </p>
         </x-card>
 
         <!-- Matrículas Totales -->
@@ -55,7 +57,9 @@
                     <x-icon-enrollments />
                 </div>
             </div>
-            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">0</p>
+            <p class="text-3xl font-bold text-gray-900 mt-2 transition dark:text-gray-100" id="activeStudents">
+                {{ $totalEnrollments }}
+            </p>
         </x-card>
     </div>
 

@@ -53,9 +53,8 @@ class CourseController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'credits' => ['required', 'integer'],
                 'max_capacity' => ['required', 'integer'],
+                'status' => ['required', 'string', Rule::in(['active', 'inactive'])],
             ]);
-
-            $validated['status'] = 'active';
 
             Course::create($validated);
 
