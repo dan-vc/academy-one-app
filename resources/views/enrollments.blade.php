@@ -137,9 +137,16 @@
                             required>
                             <option value="">Seleccione un alumno</option>
                             @foreach ($students as $student)
-                                <option value="{{ $student->id }}">{{ $student->name }} {{ $student->lastname }}
-                                    ({{ $student->student_code }})
-                                </option>
+                                @if ($student->deleted_at != null)
+                                    <option value="{{ $student->id }}">{{ $student->name }} {{ $student->lastname }}
+                                        ({{ $student->student_code }})
+                                        - INACTIVO
+                                    </option>
+                                @else
+                                    <option value="{{ $student->id }}">{{ $student->name }} {{ $student->lastname }}
+                                        ({{ $student->student_code }})
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('student_id')" class="mt-2" />
@@ -223,10 +230,19 @@
                         required>
                         <option value="">Seleccione un alumno</option>
                         @foreach ($students as $student)
-                            <option value="{{ $student->id }}"
-                                {{ old('student_id') == $student->id ? 'selected' : '' }}>
-                                {{ $student->name }} {{ $student->lastname }} ({{ $student->student_code }})
-                            </option>
+                            @if ($student->deleted_at != null)
+                                <option disabled>
+                                    {{ $student->name }} {{ $student->lastname }}
+                                    ({{ $student->student_code }})
+                                    - INACTIVO
+                                </option>
+                            @else
+                                <option value="{{ $student->id }}"
+                                    {{ old('student_id') == $student->id ? 'selected' : '' }}>
+                                    {{ $student->name }} {{ $student->lastname }}
+                                    ({{ $student->student_code }})
+                                </option>
+                            @endif
                         @endforeach
                     </select>
                     <x-input-error :messages="$errors->get('student_id')" class="mt-2" />

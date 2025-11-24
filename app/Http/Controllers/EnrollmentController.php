@@ -39,7 +39,7 @@ class EnrollmentController extends Controller
         $enrollments = $query->paginate(10)->withQueryString();
 
         // Necesitamos la lista de estudiantes y cursos para los selectores en los modales
-        $students = Student::orderBy('name')->get();
+        $students = Student::withTrashed()->orderBy('name')->get();
         $courses = Course::orderBy('name')->get();
 
         return view('enrollments', compact('enrollments', 'students', 'courses'));
