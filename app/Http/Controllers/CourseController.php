@@ -117,7 +117,7 @@ class CourseController extends Controller
 
             return redirect()->route('courses.index')
                 ->with('success', 'Curso eliminado con éxito.');
-        } catch (\Throwable $th) {
+        } catch (Exception $th) {
             return redirect()->route('courses.index')
             ->with('error', $th->getMessage());
         }
