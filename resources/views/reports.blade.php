@@ -65,9 +65,6 @@
                                     <th scope="col" class="px-6 py-3 text-left font-medium">
                                         Cursos Matriculados
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left font-medium">
-                                        Promedio
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y dark:divide-gray-700">
@@ -91,9 +88,6 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             {{ $student->enrolled_courses_count }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-green-600">
-                                            16.00
                                         </td>
                                     </tr>
                                 @endforeach
@@ -136,9 +130,6 @@
                                         Ocupación
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left font-medium">
-                                        Promedio
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left font-medium">
                                         Tasa de Aprobación
                                     </th>
                                 </tr>
@@ -161,9 +152,6 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             {{ $course->occupationRate() }}%
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-green-600">
-                                            16.00
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             @if ($course->approvalRate() < 50)

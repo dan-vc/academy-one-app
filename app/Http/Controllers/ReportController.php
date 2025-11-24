@@ -16,7 +16,7 @@ class ReportController extends Controller
     public function index()
     {
         /* Students */
-        $students = Student::withCount(['enrollments as approved_courses_count' => function ($query) {
+        $students = Student::withTrashed()->withCount(['enrollments as approved_courses_count' => function ($query) {
             $query->where('status', 'approved');
         }, 'enrollments as enrolled_courses_count' => function ($query) {
             $query->where('status', 'enrolled');
@@ -96,7 +96,7 @@ class ReportController extends Controller
         $fileName = 'reporte_alumnos_' . date('Y-m-d_H-i') . '.csv';
 
         // 2. Obtener los datos (asegúrate de cargar las relaciones para optimizar)
-        $students = Student::withCount(['enrollments as approved_courses_count' => function ($query) {
+        $students = Student::withTrashed()->withCount(['enrollments as approved_courses_count' => function ($query) {
             $query->where('status', 'approved');
         }, 'enrollments as enrolled_courses_count' => function ($query) {
             $query->where('status', 'enrolled');
@@ -123,7 +123,6 @@ class ReportController extends Controller
                 'Estado',
                 'Cursos Completados',
                 'Cursos Matriculados',
-                'Promedio',
             ]);
 
             // B. Recorrer los cursos y escribir las filas
@@ -135,7 +134,6 @@ class ReportController extends Controller
                     $student->deleted_at ? 'inactivo' : 'activo',
                     $student->approved_courses_count,
                     $student->enrolled_courses_count,
-                    '16.00',
                 ]);
             }
 
@@ -235,7 +233,6 @@ class ReportController extends Controller
                 'Matriculados',
                 'Capacidad',
                 'Ocupación (%)',
-                'Promedio',
                 'Tasa Aprobación (%)'
             ]);
 
@@ -248,7 +245,6 @@ class ReportController extends Controller
                     $course->total_students,
                     $course->max_capacity,
                     $course->occupationRate() . '%',
-                    '16.00', // Valor estático según tu tabla, cámbialo por la lógica real si existe
                     $course->approvalRate() . '%',
                 ]);
             }
