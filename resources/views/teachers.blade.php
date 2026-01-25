@@ -68,7 +68,7 @@
                             <td class="px-6 py-4" title="{{ $teacher->dni }}">
                                 {{ $teacher->dni }}
                             </td>
-                            <td class="px-6 py-4" title="{{ $teacher->profession }}">
+                            <td class="px-6 py-4 overflow-hidden text-ellipsis whitespace-nowrap max-w-xs" title="{{ $teacher->profession }}">
                                 {{ $teacher->profession }}
                             </td>
                             <td class="px-6 py-4" title="{{ $teacher->courses->count() }}">
@@ -132,7 +132,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="mt-4">
+        <div class="py-4 px-6">
             {{ $teachers->links() }}
         </div>
 
@@ -150,7 +150,7 @@
                     <div>
                         <x-input-label for="teacher_code" value="Código del Docente" />
                         <x-text-input id="teacher_code" class="block mt-1 w-full" type="text" name="teacher_code"
-                            :value="old('teacher_code')" placeholder="001505049" x-bind:value="selected?.teacher_code" required>
+                            :value="old('teacher_code')" placeholder="001234567" x-bind:value="selected?.teacher_code" required>
                             <x-icon-code />
                         </x-text-input>
                         <x-input-error :messages="$errors->get('teacher_code')" class="mt-2" />
@@ -213,7 +213,7 @@
                 <div>
                     <x-input-label for="teacher_code" value="Código del Docente" />
                     <x-text-input id="teacher_code" class="block mt-1 w-full" type="text" name="teacher_code"
-                        :value="old('teacher_code')" placeholder="001505049" required>
+                        :value="old('teacher_code')" placeholder="001234567" required>
                         <x-icon-code />
                     </x-text-input>
                     <x-input-error :messages="$errors->get('teacher_code')" class="mt-2" />

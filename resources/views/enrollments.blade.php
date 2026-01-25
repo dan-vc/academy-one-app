@@ -78,7 +78,7 @@
                                         'failed' => 'bg-red-100 text-red-600 dark:bg-red-600/10 dark:text-red-500',
                                     ];
                                     $statusText = [
-                                        'enrolled' => 'Matrículado',
+                                        'enrolled' => 'Matriculado',
                                         'retired' => 'Retirado',
                                         'approved' => 'Aprobado',
                                         'failed' => 'Reprobado',
@@ -116,7 +116,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="mt-4">
+        <div class="py-4 px-6">
             {{ $enrollments->links() }}
         </div>
 

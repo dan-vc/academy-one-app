@@ -9,7 +9,7 @@
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                placeholder="1505049@senati.pe" autofocus autocomplete="username">
+                placeholder="1234567@senati.pe" autofocus autocomplete="username">
                 <x-icon-user />
             </x-text-input>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />

@@ -20,6 +20,7 @@ class DashboardController extends Controller
         // 1. Obtenemos cursos con su conteo de matriculas
         // Ordenamos por los que tienen más alumnos y tomamos el Top 10 para que la gráfica no sea gigante
         $coursesData = Course::withCount('enrollments')
+            ->where('status', 'active')
             ->orderBy('enrollments_count', 'desc')
             ->take(10)
             ->get();
@@ -124,14 +125,12 @@ class DashboardController extends Controller
                     "fill" => false,  // Solo línea, sin rellenar el fondo
                     "data" => $historyData
                 ]
-                ]);
+            ]);
 
-
-        // --- OPCIÓN B: CARGA DOCENTE (Barra Horizontal) ---
 
         $topTeachers = Teacher::withCount('courses')
             ->orderByDesc('courses_count')
-            ->take(5)
+            ->take(10)
             ->get();
 
         $teacherChart = Chartjs::build()
@@ -147,7 +146,16 @@ class DashboardController extends Controller
                     "borderWidth" => 1,
                     "data" => $topTeachers->pluck('courses_count')->toArray()
                 ]
-                ]);
+            ])
+            // AQUÍ AGREGAS LA CONFIGURACIÓN DE ESCALAS
+            ->options([
+                'scales' => [
+                    'y' => [
+                        'min' => 0,
+                        'max' => 1
+                    ]
+                ]
+            ]);
 
         // --- TARJETAS DE RESUMEN ---
         $activeStudents = Student::count();

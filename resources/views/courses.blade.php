@@ -144,7 +144,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="mt-4">
+        <div class="py-4 px-6">
             {{ $courses->links() }}
         </div>
 

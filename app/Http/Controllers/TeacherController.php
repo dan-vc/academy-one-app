@@ -27,7 +27,7 @@ class TeacherController extends Controller
         }
 
         // 3. Paginación
-        $teachers = $query->paginate(10)->withQueryString();
+        $teachers = $query->paginate(7)->withQueryString();
 
         return view('teachers', compact('teachers'));
     }

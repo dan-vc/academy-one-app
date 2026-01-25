@@ -27,7 +27,7 @@ class StudentController extends Controller
         }
 
         // 3. Paginación
-        $students = $query->paginate(10)->withQueryString();
+        $students = $query->paginate(7)->withQueryString();
 
         return view('students', compact('students'));
     }
@@ -57,7 +57,7 @@ class StudentController extends Controller
                 ->with('success', 'Alumno creado con éxito.');
         } catch (\Throwable $th) {
             return redirect()->route('students.index')
-            ->with('success', $th->getMessage());
+            ->with('error', $th->getMessage());
         }
     }
 

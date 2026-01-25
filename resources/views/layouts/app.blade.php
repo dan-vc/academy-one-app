@@ -13,18 +13,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
+    <!-- Icon -->
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+    
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased" x-data="{
-        dark: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
-        toggle() {
-            this.dark = !this.dark;
-            localStorage.setItem('theme', this.dark ? 'dark' : 'light');
-        }
-    }" x-init="document.documentElement.classList.toggle('dark', dark);
-    $watch('dark', value => document.documentElement.classList.toggle('dark', value))">
+    dark: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    toggle() {
+        this.dark = !this.dark;
+        localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+    }
+}" x-init="document.documentElement.classList.toggle('dark', dark);
+$watch('dark', value => document.documentElement.classList.toggle('dark', value))">
 
     @if (session('success'))
         <x-alert type="success">

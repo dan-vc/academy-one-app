@@ -130,7 +130,7 @@
 
 
         {{-- Paginación --}}
-        <div class="mt-4">
+        <div class="py-4 px-6">
             {{ $students->links() }}
         </div>
 
@@ -148,7 +148,7 @@
                     <div>
                         <x-input-label for="student_code" value="Código de Alumno" />
                         <x-text-input id="student_code" class="block mt-1 w-full" type="text" name="student_code"
-                            :value="old('student_code')" placeholder="001505049" x-bind:value="selected?.student_code" required>
+                            :value="old('student_code')" placeholder="001234567" x-bind:value="selected?.student_code" required>
                             <x-icon-code />
                         </x-text-input>
                         <x-input-error :messages="$errors->get('student_code')" class="mt-2" />
@@ -171,7 +171,7 @@
                     <div class="mt-4">
                         <x-input-label for="email" value="Correo Electrónico" />
                         <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                            :value="old('email')" placeholder="1505049@senati.pe" x-bind:value="selected?.email" required>
+                            :value="old('email')" placeholder="1234567@senati.pe" x-bind:value="selected?.email" required>
                             <x-icon-mail />
                         </x-text-input>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -221,7 +221,7 @@
                 <div>
                     <x-input-label for="student_code" value="Código de Alumno" />
                     <x-text-input id="student_code" class="block mt-1 w-full" type="text" name="student_code"
-                        :value="old('student_code')" placeholder="001505049" required>
+                        :value="old('student_code')" placeholder="001234567" required>
                         <x-icon-code />
                     </x-text-input>
                     <x-input-error :messages="$errors->get('student_code')" class="mt-2" />
@@ -243,7 +243,7 @@
                 <div class="mt-4">
                     <x-input-label for="email" value="Correo Electrónico" />
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                        :value="old('email')" placeholder="1505049@senati.pe" required>
+                        :value="old('email')" placeholder="1234567@senati.pe" required>
                         <x-icon-mail />
                     </x-text-input>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />

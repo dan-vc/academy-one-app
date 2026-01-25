@@ -28,7 +28,7 @@ class CourseController extends Controller
         }
 
         // 3. Paginación
-        $courses = $query->paginate(10)->withQueryString();
+        $courses = $query->paginate(7)->withQueryString();
         $teachers = Teacher::all();
 
         return view('courses', compact('courses', 'teachers'));
