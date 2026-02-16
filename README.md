@@ -39,7 +39,6 @@ El framework de Laravel es un software de código abierto licenciado bajo la [MI
 
 ## Autor
 
-**Daniel Villafranqui**
-Frontend / Fullstack Developer  
-🔗 Portafolio: https://portafolio-danvc.netlify.app
-🔗 LinkedIn: https://linkedin.com/in/daniel-villafranqui  
+**Daniel Villafranqui** - Frontend / Fullstack Developer  
+Portafolio: https://portafolio-danvc.netlify.app
+LinkedIn: https://linkedin.com/in/daniel-villafranqui  
